@@ -9,6 +9,10 @@ PDF_CONTRACHEQUE = 'pdfs/HoleriteCompleto.pdf'
 PDF_REFEICAO = 'pdfs/Refeicao.pdf'
 CNPJ = '98.765.432/0001-98'
 
+if not os.path.exists(PDF_CONTRACHEQUE) or not os.path.exists(PDF_REFEICAO):
+    print('VERIFIQUE SE EXISTEM OS ARQUIVOS: ' + PDF_CONTRACHEQUE + ', ' + PDF_REFEICAO)
+    exit()
+
 paths = [PATH_CONTRACHEQUE, PATH_REFEICAO, PATH_CONTRACHEQUE_REFEICAO]
 
 for pathItem in paths:
