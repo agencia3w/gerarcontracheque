@@ -5,6 +5,9 @@ PATH_CONTRACHEQUE = 'extraidos/holerite/'
 PATH_REFEICAO = 'extraidos/refeicao/'
 PATH_CONTRACHEQUE_REFEICAO = 'contracheque_refeicao/'
 FOLDER_REFEICAO = 'REFEICAO'
+PDF_CONTRACHEQUE = 'pdfs/HoleriteCompleto.pdf'
+PDF_REFEICAO = 'pdfs/Refeicao.pdf'
+CNPJ = '98.765.432/0001-98'
 
 paths = [PATH_CONTRACHEQUE, PATH_REFEICAO, PATH_CONTRACHEQUE_REFEICAO]
 
@@ -12,10 +15,8 @@ for pathItem in paths:
     if not os.path.exists(pathItem):
         os.makedirs(pathItem)
 
-pdf_document = "pdfs/HoleriteCompleto.pdf"
-
 print('### CONTRACHEQUES')
-with open(pdf_document, "rb") as filehandle:
+with open(PDF_CONTRACHEQUE, "rb") as filehandle:
     pdf = PdfFileReader(filehandle, strict=False)
     info = pdf.getDocumentInfo()
     pages = pdf.getNumPages()
@@ -23,7 +24,6 @@ with open(pdf_document, "rb") as filehandle:
 
     EMPLOYEE_NAME_STEPS = 5
     MONTH_AND_EMPLOYEEID_STEPS = 4
-    CNPJ = '98.765.432/0001-98'
 
     for page in range(pdf.getNumPages()):
         current_page = pdf.getPage(page)
@@ -54,9 +54,6 @@ with open(pdf_document, "rb") as filehandle:
             employeeNameCompare = ''
 
 # Extrair Refeição
-
-pdf_document = "pdfs/Refeicao.pdf"
-
 print('\n### REFEICAO')
 
 months = {
@@ -74,7 +71,7 @@ months = {
     '12': 'DEZEMBRO'
 }
 
-with open(pdf_document, "rb") as filehandle:
+with open(PDF_REFEICAO, "rb") as filehandle:
     pdf = PdfFileReader(filehandle, strict=False)
     info = pdf.getDocumentInfo()
     pages = pdf.getNumPages()
@@ -99,7 +96,6 @@ with open(pdf_document, "rb") as filehandle:
             print("Arquivo temporario gerado: " + employeeID +"-"+ employeeName +"-"+ monthCurrentPayment +"_REFEICAO.pdf")
 
 # Juntar arquivos
-
 print('\n### CONTRACHEQUE/REFEICAO')
 
 refeicoes = []
